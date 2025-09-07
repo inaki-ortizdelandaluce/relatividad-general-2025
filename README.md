@@ -1,2 +1,2 @@
-# relatividad-general-2025
-Curso de Introducción a la Relatividad General (2025): Teoría, Problemas y Recursos Complementarios
+# Introducción a la Relatividad General (2025)
+Teoría, problemas y recursos complementarios del Curso de Introdución a la Relatividad General (2025)
