@@ -1,4 +1,4 @@
-# Análisis de datos de Ondas Gravitacionale
+# Análisis de datos de Ondas Gravitacionales
 
 Pulsa el logo de Google Colab para ejecutar los notebooks
 
