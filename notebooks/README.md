@@ -6,6 +6,6 @@ Pulsa el logo de Google Colab para ejecutar los notebooks
 
 ## Otros recursos
 
-* [LIGO Detects Gravitational Waves](https://www.youtube.com/watch?v=B4XzLDM3Py8)
-* [Trailer Documental Advanced LIGO](https://www.youtube.com/watch?v=dX4vCNi544w)
-* [Documental Advanced LIGO](https://www.youtube.com/watch?v=dX4vCNi544w)
+* <a href="https://www.youtube.com/watch?v=B4XzLDM3Py8" target="_blank" rel="noopener noreferrer">LIGO Detects Gravitational Waves</a>
+* <a href="https://www.youtube.com/watch?v=nGZnYU6tBqI" target="_blank" rel="noopener noreferrer">Trailer Documental Advanced LIGO</a>
+* <a href="https://www.youtube.com/watch?v=dX4vCNi544w" target="_blank" rel="noopener noreferrer">Documental Advanced LIGO</a>
