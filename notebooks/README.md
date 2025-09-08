@@ -1,4 +1,4 @@
-# Notebooks del Curso de Introducción a la Relatividad General (2025)
+# Análisis de datos de Ondas Gravitacionale
 
 Pulsa el logo de Google Colab para ejecutar los notebooks
 
