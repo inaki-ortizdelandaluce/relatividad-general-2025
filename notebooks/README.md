@@ -1,6 +1,6 @@
 # Análisis de datos de Ondas Gravitacionales
 
-Pulsa el logo de Open in Colab para ejecutar los notebooks en Google Colab
+Pulsa el logo _Open in Colab_ para ejecutar los notebooks en Google Colab
 
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/inaki-ortizdelandaluce/relatividad-general-2025/blob/main)
 
