@@ -10,9 +10,9 @@ Pulsa el logo _Open in Colab_ para ejecutar los notebooks en Google Colab
 
 ## Otros recursos
 
-* Journey of Gravitational Waves [YouTube](https://www.youtube.com/watch?v=FlDtXIBrAYE)
-* How to listen to Gravitational Waves [pdf](https://dcc.ligo.org/public/0200/G2501079/001/main.pdf)
-* LIGO Detects Gravitational Waves [YouTube](https://www.youtube.com/watch?v=B4XzLDM3Py8)
-* Trailer Documental Advanced LIGO [YouTube](https://www.youtube.com/watch?v=dX4vCNi544w)
-* Documental Advanced LIGO [YouTube](https://www.youtube.com/watch?v=nGZnYU6tBqI)
+* Journey of Gravitational Waves [[YouTube]](https://www.youtube.com/watch?v=FlDtXIBrAYE)
+* How to listen to Gravitational Waves [[pdf]](https://dcc.ligo.org/public/0200/G2501079/001/main.pdf)
+* LIGO Detects Gravitational Waves [[YouTube]](https://www.youtube.com/watch?v=B4XzLDM3Py8)
+* Trailer Documental Advanced LIGO [[YouTube]](https://www.youtube.com/watch?v=dX4vCNi544w)
+* Documental Advanced LIGO [[YouTube]](https://www.youtube.com/watch?v=nGZnYU6tBqI)
 
