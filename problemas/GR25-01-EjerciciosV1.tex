@@ -7,26 +7,26 @@
  
 \usepackage[margin=1in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb}
-\usepackage[spanish]{babel} % Added for Spanish hyphenation and names
+\usepackage[spanish]{babel} 
 \usepackage[T1]{fontenc}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
  
-\newenvironment{theorem}[2][Teorema]{\begin{trivlist} % Changed to Spanish
+\newenvironment{theorem}[2][Teorema]{\begin{trivlist} 
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{lemma}[2][Lema]{\begin{trivlist} % Changed to Spanish
+\newenvironment{lemma}[2][Lema]{\begin{trivlist} 
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{exercise}[2][Ejercicio]{\begin{trivlist} % Changed to Spanish
+\newenvironment{exercise}[2][Ejercicio]{\begin{trivlist} 
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{problem}[2][Problema]{\begin{trivlist} % Changed to Spanish
+\newenvironment{problem}[2][Problema]{\begin{trivlist} 
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{question}[2][Pregunta]{\begin{trivlist} % Changed to Spanish
+\newenvironment{question}[2][Pregunta]{\begin{trivlist} 
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{corollary}[2][Corolario]{\begin{trivlist} % Changed to Spanish
+\newenvironment{corollary}[2][Corolario]{\begin{trivlist} 
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
-\newenvironment{solution}{\begin{proof}[Solución]}{\end{proof}} % Changed to Spanish
+\newenvironment{solution}{\begin{proof}[Solución]}{\end{proof}} 
  
 \begin{document}
  
@@ -35,26 +35,37 @@
 % --------------------------------------------------------------
  
 \title{Ejercicios de Relatividad General y Cosmología}
-\author{Iñaki Ortiz de Landaluce\\ %replace with your name
-Introducción a la Relatividad General y Cosmología}
-
+\author{Iñaki Ortiz de Landaluce\\ 
+Introducción a la Relatividad General y Cosmología, Curso 2025-2026}
+\date{} 
 \maketitle
 
 % ==============================================================
 %                     UNIDAD 1: INTRODUCCIÓN
 % ==============================================================
 \section*{Unidad 1 Introducción a la Relatividad}
- 
-\begin{exercise}{1.1} Una varilla de longitud $1 \text{m}$ está inclinada $45^\circ$ en el plano $xy$ con respecto al eje $x$. Un observador con velocidad $\sqrt{2/3}c$ se aproxima a la varilla en la dirección positiva del eje $x$. ¿Cuál es la longitud de la varilla y el ángulo de inclinación con respecto a su eje $x$ que mide el observador?
+
+\begin{exercise}{1.1} Siendo $\gamma$ el factor de Lorentz, la cantidad $(\gamma -1)$ da una medida de la diferencia entre los efectos relativistas y la mecánica Newtoniana para distintos regímenes de velocidades. Siendo $\beta=v/c$, calcula su valor para obtener los siguentes valores de $(\gamma-1)$: (a) 0.01, (b) 0.1, (c) 1 (d) 10 y (e) 100.
 \end{exercise}
 
-\begin{exercise}{1.2} Cuando los rayos cósmicos primarios impactan en la atmósfera, se crean muones a una altitud entre $10 \text{km}$ y $20 \text{km}$. Un muón en el laboratorio vive en promedio un tiempo $\tau_0 = 2.2 \cdot 10^{-6} \text{s}$ antes de desintegrarse en un electrón (o un positrón) y dos neutrinos. Aunque un muón sólo puede moverse $\tau_0 c \approx 660 \text{m}$ durante el tiempo $\tau_0$, una gran fracción de muones logra alcanzar la superficie de la Tierra. ¿Cómo puede explicarse esto? Realice un cálculo numérico para un muón que se mueve con velocidad $0.999c$.
+\begin{exercise}{1.2} Una varilla de longitud $1 \text{m}$ está inclinada $45^\circ$ en el plano $xy$ con respecto al eje $x$. Un observador con velocidad $\sqrt{2/3}c$ se aproxima a la varilla en la dirección positiva del eje $x$. ¿Cuál es la longitud de la varilla y el ángulo de inclinación con respecto a su eje $x$ que mide el observador?
 \end{exercise}
 
-% You can add more exercises for Unit 1 here
-%\begin{exercise}{1.2}
-%New exercise text for Unit 1...
-%\end{exercise}
+\begin{exercise}{1.3} Cuando los rayos cósmicos primarios impactan en la atmósfera, se crean muones a una altitud entre $10 \text{km}$ y $20 \text{km}$. Un muón en el laboratorio vive en promedio un tiempo $\tau_0 = 2.2 \cdot 10^{-6} \text{s}$ antes de desintegrarse en un electrón (o un positrón) y dos neutrinos. Aunque un muón sólo puede moverse $\tau_0 c \approx 660 \text{m}$ durante el tiempo $\tau_0$, una gran fracción de muones logra alcanzar la superficie de la Tierra. ¿Cómo puede explicarse esto? Realice un cálculo numérico para un muón que se mueve con velocidad $0.999c$.
+\end{exercise}
+
+\begin{exercise}{1.4} 
+Tenemos dos sistemas de referencia inerciales $S$ y $S'$, donde $S'$ se mueve con velocidad $v$ en la dirección del eje $x$ positivo respecto a $S$. Si un objeto se mueve con velocidad constante $u$ respecto a $S$ a lo largo del mismo eje x, demuestra que la velocidad medida desde el sistema de referencia $S'$ a lo largo del eje $x'$, satisface la siguiente ecuación:
+\[
+u' = \frac{u - v}{1 - \frac{u v}{c^2}}
+\]
+\end{exercise}
+
+\begin{exercise}{1.5} 
+Una varilla se mueve con velocidad $v$ a lo largo del eje $x$ positivo en un sistema inercial $S$
+$S$. Un observador en reposo en $S'$ mide que la longitud de la varilla es $L$. Otro observador se 
+mueve con velocidad $-v$ a lo largo del eje $x$. ¿Qué longitud, expresada como función de $L$ y $v$, medirá este observador para la varilla? La medición se realiza de la manera habitual, midiendo los extremos de forma simultánea para cada observador en sus respectivos sistemas de referencia.
+\end{exercise}
 
  
 \end{document}
