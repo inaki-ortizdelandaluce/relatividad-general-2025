@@ -46,9 +46,31 @@ Introducción a la Relatividad General y Cosmología, Curso 2025-2026}
 \section*{Unidad 2 Álgebra y Cálculo Tensorial}
 
 \begin{exercise}{2.1} 
-\[
-u' = \frac{u - v}{1 - \frac{u v}{c^2}}
-\]
+Las ecuaciones de transformación entre las coordenadas polares $r$, $\theta$ y las coordenadas cartesianas $x$, $y$ en un plano son:
+\begin{gather}
+\begin{aligned}
+x &= r\cos\theta\\
+y &= r\sin\theta
+\end{aligned}
+\quad \text{}
+\tag{1}
+\\[6pt]
+\begin{aligned}
+r &= \sqrt{x^{2}+y^{2}}\\
+\theta &= \tan^{-1}\!\left(\frac{y}{x}\right)
+\end{aligned}
+\quad \text{}
+\tag{2}
+\end{gather}
+Calcula las cuatro transformadas parciales $\partial{x^{\mu}}/\partial{x'^{\nu}}$. 
 \end{exercise}
- 
+
+\begin{exercise}{2.2} 
+Datas las ecuaciones de transformación entre las coordenadas cartesianas y las coordendadas polares (ver Ejercicio 2.1), considera la función escalar $\Phi = bxy$ y calcula su gradiente en ambos sistemas de referencia.
+\end{exercise}
+
+\begin{exercise}{2.3}
+Basándote en los resultados del Ejercicio 2.2, transforma las coordenadas cartesianas del vector $\nabla \Phi$ a coordenadas polares según las reglas de la transformación covariante de un vector. Comprueba que el resultado de dicha transformación coincide con las coordenadas polares del vector $\nabla \Phi$.
+\end{exercise}
+
 \end{document}
