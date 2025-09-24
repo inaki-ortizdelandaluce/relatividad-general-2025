@@ -9,6 +9,12 @@
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage[spanish]{babel} 
 \usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage[labelformat=empty]{caption}
+\usepackage{float}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -45,22 +51,22 @@
 \section*{Unidad 2 Álgebra y Cálculo Tensorial}
 
 \begin{exercise}{2.1} 
-Las ecuaciones de transformación entre las coordenadas polares $r$, $\theta$ y las coordenadas cartesianas $x$, $y$ en un plano son:
-\begin{gather}
-\begin{aligned}
+Las ecuaciones de transformación entre las coordenadas polares $(r, \theta)$ y las coordenadas cartesianas $(x, y)$ en un plano son:
+%\begin{gather}
+\begin{align*}
 x &= r\cos\theta\\
 y &= r\sin\theta
-\end{aligned}
-\quad \text{}
-\tag{1}
-\\[6pt]
-\begin{aligned}
+\end{align*}
+%\quad \text{}
+%\tag{1}
+%\\[6pt]
+\begin{align*}
 r &= \sqrt{x^{2}+y^{2}}\\
 \theta &= \tan^{-1}\!\left(\frac{y}{x}\right)
-\end{aligned}
-\quad \text{}
-\tag{2}
-\end{gather}
+\end{align*}
+%\quad \text{}
+%\tag{2}
+%\end{gather}
 Calcula las cuatro transformadas parciales $\partial{x^{\mu}}/\partial{x'^{\nu}}$. 
 \end{exercise}
 
@@ -72,4 +78,148 @@ Datas las ecuaciones de transformación entre las coordenadas cartesianas y las 
 Basándote en los resultados del Ejercicio 2.2, transforma las coordenadas cartesianas del vector $\nabla \Phi$ a coordenadas polares según las reglas de la transformación covariante de un vector. Comprueba que el resultado de dicha transformación coincide con las coordenadas polares del vector $\nabla \Phi$.
 \end{exercise}
 
+\begin{exercise}{2.4}
+Considera el sistema de coordenadas parabólicas $(p,q)$ y sus transformaciones desde coordenadas cartesianas ordinarias $(x,y)$ dadas por:
+\begin{align*}
+p(x,y) &= x\\
+q(x,y) &= y - c x^{2}
+\end{align*}
+donde $c$ es una constante. Prueba que las ecuaciones de transformación inversa son:
+\begin{align*}
+x(p,q) &= p\\
+y(p,q) &= c p^{2} + q
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=none,
+  xmin=-4.5, xmax=4.5,
+  ymin=-3,   ymax=5,      % rango vertical hasta q=5
+  width=11cm, height=7cm,
+  clip=true
+]
+
+% ----- parámetro c -----
+\def\c{0.05}
+
+% ====== Grid ======
+% líneas p = const
+\pgfplotsinvokeforeach{-4,-3,-2,-1,0,1,2,3,4}{
+    \addplot[gray!70, thin, domain=-3:5] ({#1},{x});
+}
+
+% parábolas q = const
+\pgfplotsinvokeforeach{-3,-2,-1,0,1,2,3,4,5}{
+    \addplot[gray!70, thin, domain=-4.5:4.5] ({x},{\c*x^2 + #1});
+}
+
+% ====== Etiquetas SOLO en p=0 y q=0 ======
+%\node[gray!70] at (axis cs:0,-2.8) {\scriptsize $p=0$};
+%\node[gray!70, anchor=east] at (rel axis cs:0.995,{(0+4)/8}) {\scriptsize $q=0$};
+% Nota: mapeo (q+3)/(qmax-qmin) con qmin=-3, qmax=5 → (0+3)/8=0.375
+
+% ====== Vectores y puntos ======
+% Punto O: (p,q)=(0,0)
+\def\pO{0}\def\qO{0}
+\pgfmathsetmacro{\xO}{\pO}
+\pgfmathsetmacro{\yO}{\c*(\pO*\pO)+\qO}
+\draw[-{Latex[length=3mm]}, thick] (axis cs:\xO,\yO) -- (axis cs:{\xO+1},{\yO+2*\c*\pO})
+  node[pos=1, above] {$\mathbf{e}_p$};
+\draw[-{Latex[length=3mm]}, thick] (axis cs:\xO,\yO) -- (axis cs:\xO,{\yO+1})
+  node[pos=1, right] {$\mathbf{e}_q$};
+\fill (axis cs:\xO,\yO) circle (1.2pt);
+\node[below left] at (axis cs:\xO,\yO) {\small $\mathbf{O}$};
+
+% Punto P: (p,q)=(2,2)
+\def\pP{2}\def\qP{2}
+\pgfmathsetmacro{\xP}{\pP}
+\pgfmathsetmacro{\yP}{\c*(\pP*\pP)+\qP}
+\draw[-{Latex[length=3mm]}, thick] (axis cs:\xP,\yP) -- (axis cs:{\xP+1},{\yP+2*\c*\pP})
+  node[pos=1, above right] {$\mathbf{e}_p$};
+\draw[-{Latex[length=3mm]}, thick] (axis cs:\xP,\yP) -- (axis cs:\xP,{\yP+1})
+  node[pos=1, right] {$\mathbf{e}_q$};
+\fill (axis cs:\xP,\yP) circle (1.2pt);
+\node[below right] at (axis cs:\xP,\yP) {\small $\mathbf{P}$};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Coordenadas parabólicas con $p=x$ y $q=y-cx^2$}
+\end{figure}
+
+\end{exercise}
+
+\begin{exercise}{2.5}
+Dadas las ecuaciones de transformación entre coordenadas cartesianas y parabólicas del Ejercicio 2.4, y sabiendo que las componentes del tensor de la métrica en coordenadas cartesianas son las de la matriz identidad, i.e. $ds^2=dx^2+dy^2$, calcula el tensor de la métrica en coordenadas parabólicas $(p,q)$.    
+\end{exercise}
+
+\begin{exercise}{2.6}
+Sea un vector \textbf{A} con componentes en coordenadas parabólicas (p, q): $A^p=1,\,A^q=0$. De acuerdo con las transformaciones entre las coordenadas parabólicas y las cartesianas especificadas en el Ejercicio 2.4:
+\\(a) Encuentra las componentes de este vector en el sistema de coordenadas cartesianas (x,y).
+\\(b) ¿Tienen sentido estas componentes? (Pista: dibuja los vectores base $\textbf{e}_p$ y $\textbf{e}_q$ en un punto típico).
+\\(c) Demuestra que $A^2=\textbf{A}\cdot\textbf{A}$ tiene el mismo valor en ambos sistemas.  
+\end{exercise}
+
+\begin{exercise}{2.7}
+Dadas las transformaciones entre coordenadas cartesianas $(x, y)$ y coordenadas polares $(r, \theta)$ del Ejercicio 2.1, considera el vector \textbf{V} con componentes en el sistema de referencia cartesiano $V^x=1$ y $V^y=0$ y calcula las componentes covariantes tanto en coordenadas cartesianas como polares. Comprueba que $V'^\mu V'_\nu = 1$ e interpreta el resultado.
+\end{exercise}
+
+\begin{exercise}{2.8}
+Por definición, la delta de Kronecker $\delta^{\mu}{}_{\nu}$ tiene los mismos componentes en todos los sistemas de referencia ($\delta^{\mu}{}_{\nu}=1$ si $\mu=\nu$, y cero en caso contrario). Prueba que la delta de Kronecker es un tensor de tipo (2,1), es decir, sus coordenadas se transforman de acuerdo con la siguente expresión:
+\[
+\frac{\partial{x'^\mu}}{\partial{x^\alpha}}\frac{\partial{x^\alpha}}{\partial{x'^\nu}}\delta^{\alpha}{}_{\beta}=\delta'^{\mu}{}_{\nu}\equiv\delta^{\alpha}{}_{\beta}
+\]
+\end{exercise}
+
+\begin{exercise}{2.9}
+Prueba que la suma de dos tensores $A$ y $B$ de tipo (2, 1), es otro tensor $C$ de tipo (2,1), tal que sus componentes $C^{\mu\nu}{}{}_{\alpha}=A^{\mu\nu}{}{}_{\alpha} + B^{\mu\nu}{}{}_{\alpha}$ satisfacen la regla de transformación de los tensores.
+\end{exercise}
+
+\begin{exercise}{2.10}
+Prueba que el product tensorial de dos tensores $A$ y $B$ de tipo (0, 2) y (1, 0) respectivamente, es otro tensor $C$ de tipo (1,2), tal que sus componentes $C_{\mu\nu}{}^{\alpha}=A_{\mu\nu}B^{\alpha}$ satisfacen la regla de transformación de los tensores.
+\end{exercise}
+
+\begin{exercise}{2.11}
+\end{exercise}
+
+\begin{exercise}{2.12}
+\end{exercise}
+
+\begin{exercise}{2.13}
+\end{exercise}
+
+\begin{exercise}{2.14}
+\end{exercise}
+
+\begin{exercise}{2.15}
+Calcula las derivadas parciales $\partial{x^{\mu}}/\partial{x'^{\nu}}$ de las transformaciones de Lorentz, donde $(x^0, x^1, x^2, x^3)=(t,x,y,z)$:
+\begin{align*}
+t' & =\gamma(t-vx)\\
+x' & =\gamma(x-vt)\\
+y' & =y\\
+z' & =z
+\end{align*}
+\begin{align*}
+t & =\gamma(t'+vx')\\
+x & =\gamma(x'+vt')\\
+y & =y'\\
+z & =z'
+\end{align*}
+y comprueba que se cumple la identidad:
+\[
+\frac{\partial{x'^\mu}}{\partial{x^\alpha}}\frac{\partial{x^\alpha}}{\partial{x'^\nu}}=\delta^{\mu}{}_{\nu}
+\]
+\end{exercise}
+
+\begin{exercise}{2.16}
+Comprueba que la métrica de Minkowski $\eta_{\mu\nu}=diag(-1, 1, 1, 1)$ es un tensor covariante de rango 2, i.e.
+\[
+\eta'_{\mu_\nu}=\frac{\partial{x^\alpha}}{\partial{x'^\mu}}\frac{\partial{x^\beta}}{\partial{x'^\nu}}\eta_{\alpha\beta}
+\]
+en los siguientes casos:
+\\(a)\,$\mu=\nu=x^0$
+\\(b)\,$\mu=x^0$\,;\,$\nu=x^1$
+\\(c)\,$\mu=\nu=x^1$
+\end{exercise}
 \end{document}
