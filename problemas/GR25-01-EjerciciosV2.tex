@@ -1,0 +1,215 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[spanish]{babel} 
+\usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.pathreplacing,positioning}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Teorema]{\begin{trivlist} 
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lema]{\begin{trivlist} 
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Ejercicio]{\begin{trivlist} 
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problema]{\begin{trivlist} 
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Pregunta]{\begin{trivlist} 
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corolario]{\begin{trivlist} 
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solución]}{\end{proof}} 
+
+\newcommand{\TwinParadoxDiagram}[2]{%
+  \begingroup
+  \def\beta{#1}%
+  \def\T{#2}%
+  % Derivados
+  \pgfmathsetmacro{\xturn}{\beta*\T}%
+  \pgfmathsetmacro{\tturn}{\T}%
+  \pgfmathsetmacro{\tmeet}{2*\T}%
+  \pgfmathsetmacro{\gamma}{1/sqrt(1-\beta*\beta)}%
+  \pgfmathsetmacro{\taustra}{2*\T/\gamma}%
+  \pgfmathsetmacro{\tterra}{2*\T}%
+  \begin{tikzpicture}[>=Latex,thick,scale=0.9]
+    % Estilos
+    \tikzset{
+      worldline/.style={line width=1pt},
+      astro/.style={worldline,blue},
+      terra/.style={worldline,red!70!black},
+      lightcone/.style={dashed,gray},
+      event/.style={circle,fill=black,inner sep=1.2pt},
+      label/.style={black,fill=white,inner sep=1pt}
+    }
+    % Ejes (c=1)
+    \draw[->] (-0.6,0) -- (6,0) node[below right] {$x$};
+    \draw[->] (0,-0.4) -- (0,9) node[left] {$t$};
+
+    % Conos de luz desde el origen
+    \draw[lightcone] (-0.5,-0.5) -- (6,6);
+
+    % Terra en x=0
+    \draw[terra] (0,0) -- (0,\tmeet) node[pos=0.5,left=6pt,label] {Terra};
+
+    % Astra: ida y vuelta a velocidad V = beta c
+    \draw[astro] (0,0) -- (\xturn,\tturn) 
+    node[pos=0.55,right=6pt,yshift=8pt,black] {Astra};
+
+    \draw[astro] (\xturn,\tturn) -- (0,\tmeet) 
+    node[pos=0.55,right=6pt,yshift=-8pt,black] {Astra y Stella};    
+    
+    % Eventos
+    \node[event,label=below left:{$O$}] at (0,0) {};
+    \node[event,label=above:{$\text{Giro}$}] at (\xturn,\tturn) {};
+    \node[event,label=right:{$R$}] at (0,\tmeet) {};
+
+    % Anotaciones de velocidad
+    \node[blue,left,xshift=-6pt] at ($(0,0)!0.55!(\xturn,\tturn)$) {$V$};
+    \node[blue,left,xshift=-6pt] at ($(\xturn,\tturn)!0.45!(0,\tmeet)$) {$-V$};
+
+    % Corchetes: tiempos propios
+    \draw[decorate,decoration={brace,amplitude=6pt}]
+      ($(\xturn,\tturn)!0.02!(0,\tmeet)$) -- ($(0,\tmeet)!0.98!(\xturn,\tturn)$)
+      node[midway,above=4pt,label,align=left]
+      {$\displaystyle \tau_{\text{Astra, vuelta}}$};
+
+  \end{tikzpicture}
+  \par\smallskip
+  % Nota bajo la figura
+  %\noindent\footnotesize\emph{Diagrama de Minkowski de la paradoja de los gemelos: Terra permanece %en $x{=}0$; Astra se aleja y regresa con Stella a velocidad $V$.}
+  \endgroup
+}
+
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+\title{\textbf{Ejercicios}}
+\author{\textbf{Introducción a la Relatividad General y la Cosmología}\\
+\textbf{Curso 2025-2026}}\date{} 
+\maketitle
+
+% ==============================================================
+%                     UNIDAD 1: INTRODUCCIÓN
+% ==============================================================
+\section*{Unidad 1 Introducción a la Relatividad}
+
+\begin{exercise}{1.1}
+Un evento ocurre en las coordenadas $(ct=3m, x=4m, y=0, z=0)$ en el sistema de referencia 
+$S$ según un observador $O$. ¿Cuáles son las coordenadas del mismo evento en el sistema de referencia 
+$S'$ según un observador $O'$, que se mueve con velocidad $V=3c/4$ en la dirección positiva del eje 
+$x$, medida en $S$?
+\end{exercise}
+
+\begin{exercise}{1.2} Siendo $\gamma$ el factor de Lorentz, la cantidad $(\gamma -1)$ da una medida de la diferencia entre los efectos relativistas y la mecánica Newtoniana para distintos regímenes de velocidades. Siendo $\beta=v/c$, calcula su valor para obtener los siguentes valores de $(\gamma-1)$: (a) 0.01, (b) 0.1, (c) 1 (d) 10 y (e) 100.
+\end{exercise}
+
+\begin{exercise}{1.3}  La transformación de Lorentz se puede escribir en notación matricial como
+\[
+\begin{pmatrix}
+t' \\
+x'
+\end{pmatrix}
+=
+\begin{pmatrix}
+\gamma(v) & -\gamma(v)v \\
+-\gamma(v)v & \gamma(v)
+\end{pmatrix}
+\begin{pmatrix}
+t \\
+x
+\end{pmatrix}
+\]
+y la matriz  se puede invertir para determinar las coordenadas $(t,x)$ en términos de $(t', x')$. Demuestra que al invertir la matriz obtenemos la transformación inversa de Lorentz.
+\end{exercise}
+
+\begin{exercise}{1.4} Una varilla de longitud $1 \text{m}$ está inclinada $45^\circ$ en el plano $xy$ con respecto al eje $x$. Un observador con velocidad $\sqrt{2/3}c$ se aproxima a la varilla en la dirección positiva del eje $x$. ¿Cuál es la longitud de la varilla y el ángulo de inclinación con respecto a su eje $x$ que mide el observador?
+\end{exercise}
+
+\begin{exercise}{1.5} Cuando los rayos cósmicos primarios impactan en la atmósfera, se crean muones a una altitud entre $10 \text{km}$ y $20 \text{km}$. Un muón en el laboratorio vive en promedio un tiempo $\tau_0 = 2.2 \mu\text{s}$ antes de desintegrarse en un electrón (o un positrón) y dos neutrinos. Aunque un muón sólo puede moverse $\tau_0 c \approx 660 \text{m}$ durante el tiempo $\tau_0$, una gran fracción de muones logra alcanzar la superficie de la Tierra. ¿Cómo puede explicarse esto? Realiza el cálculo numérico para un muón que se mueve con velocidad $0.999c$.
+\end{exercise}
+
+\begin{exercise}{1.6}
+Una varilla de longitud $L$ yace en el plano $xz$ de un sistema de coordenadas. Si el ángulo entre la varilla y el eje $x$ es $\theta$, calcula la longitud de la varilla según la ve un observador que se mueve con velocidad $v$ a lo largo del eje $x$.    
+\end{exercise}
+
+\begin{exercise}{1.7}
+Dos eventos ocurren en $(t_1, x_1, y_1, z_1)=(3, 7, 0, 0)$ y $(t_2, x_2, y_2, z_2)=(5, 5, 0, 0)$ ¿Cuál es el intervalo espacio-temporal?    
+\end{exercise}
+
+\begin{exercise}{1.8}
+En el caso en que $\Delta y =0$ y $\Delta z =0$, usa las reglas de transformación del intervalo para demostrar que la separación espacio-temporal dada por la ecuación $\Delta s^2 = - \Delta t^2 + \Delta x^2 + \Delta y^2 + \Delta z^2$ es realmente invariante bajo transformaciones de Lorentz.
+\end{exercise}  
+
+\begin{exercise}{1.9}
+En un sistema inercial $S$, un objeto que comienza en reposo en $t=0$ se mueve con una aceleración constante $a$ a lo largo del eje x de coordenadas, es decir, $x=at^2/2$. Determina el tiempo propio del objeto para alcanzar la velocidad $v_0$ en S.
+\end{exercise}
+
+\begin{exercise}{1.10}
+Dados dos eventos separados de tipo tiempo o \textit{timelike}, demuestra que el tiempo propio entre esos eventos es la menor cantidad de tiempo que cualquier observador inercial medirá entre ellos.    
+\end{exercise}
+
+\begin{exercise}{1.11}
+Si un evento $A$ causa el evento $B$, entonces debe cumplirse que el evento $A$ ocurra antes que el evento $B$ en todos los sistemas de referencia inerciales, de lo contrario, en algunos sistemas inerciales, los observadores verían un evento que precede a su causa, lo cual es absurdo. Por simplicidad en nuestro argumento, definamos coordenadas de modo que ambos eventos ocurran en el eje 
+$x$ positivo en un cierto sistema $S$. Utiliza las ecuaciones apropiadas de transformación de Lorentz para diferencias de coordenadas para mostrar que si $\Delta t > 0$ en el sistema $S$, pero 
+$\Delta s^2>0$ (es decir, el intervalo entre eventos es de tipo espacial), entonces es posible encontrar un sistema $S'$ que se mueve con velocidad $\beta < 1$ relativa a $S$ donde $\Delta t' < 0$
+ (es decir, el orden temporal es diferente). Muestra también que no es posible si $\Delta s^2 < 0$ (el intervalo es de tipo temporal).
+\end{exercise}
+
+\begin{exercise}{1.12}
+Un observador $K'$ se mueve con velocidad constante $v$ a lo largo del eje  $x^1$ positivo de un observador $K$. Una varilla delgada está paralela al eje $x'^1$ y se mueve en la dirección del eje 
+$x'^2$ positivo con velocidad relativa $u$. Demuestra que, según el observador $K$ la varilla forma un ángulo $\phi$ con el eje $x^1$ tal que
+\[
+tan\phi=-\frac{uv/c^2}{\sqrt{1-v^2/c^2}}
+\]
+\end{exercise}
+
+\begin{exercise}{1.13} 
+Tenemos dos sistemas de referencia inerciales $S$ y $S'$, donde $S'$ se mueve con velocidad $v$ en la dirección del eje $x$ positivo respecto a $S$. Si un objeto se mueve con velocidad constante $u$ respecto a $S$ a lo largo del mismo eje x, demuestra que la velocidad medida desde el sistema de referencia $S'$ a lo largo del eje $x'$, satisface la siguiente ecuación:
+\[
+u' = \frac{u - v}{1 - \frac{u v}{c^2}}
+\]
+\end{exercise}
+
+\begin{exercise}{1.14} 
+Verifica a partir de la formula de la transformación de Lorentz entre dos sistemas inerciales con movimiento relativo uniforme en la dirección $x$, que cualquier objeto que viaja a velocidad 
+$c$ en uno de los sistemas inerciales, también viaja a velocidad $c$ en el otro.
+\end{exercise}
+
+
+\begin{exercise}{1.15}
+Según un observador en una estación espacial, dos naves espaciales se alejan, viajando en la misma dirección a diferentes velocidades. La nave más cercana se mueve a velocidad $1c/2$, la más lejana a velocidad $3c/4$. ¿Cuál es la velocidad de una de las naves espaciales observada desde la otra?    
+\end{exercise}
+
+\begin{exercise}{1.16}
+Una varilla se mueve con velocidad $v$ a lo largo del eje $x$ positivo en un sistema inercial
+$S$. Un observador en reposo en $S'$ mide que la longitud de la varilla es $L$. Otro observador se 
+mueve con velocidad $-v$ a lo largo del eje $x$. ¿Qué longitud, expresada como función de $L$ y $v$, medirá este observador para la varilla? La medición se realiza de la manera habitual, midiendo los extremos de forma simultánea para cada observador en sus respectivos sistemas de referencia.    
+\end{exercise}
+
+\begin{exercise}{1.17}
+Considera dos gemelas idénticas, Astra y Terra. La primera abandona la Tierra en una nave espacial que viaja en una dirección fija a una velocidad cercana a la de la luz $V$. Astra logra dar la vuelta en algún punto y regresar a la Tierra, transfiriéndose a la nave Stella, que se acerca a la Tierra con velocidad $-V$. 
+\\(a) Usando la transformación de velocidades, demuestra que Astra observa que la velocidad de aproximación de la nave Stella es 
+\[
+\frac{2V}{1 + V^2/c^2}
+\]
+(b) Si Terra envía señales de tiempo regulares hacia Astra a intervalos de un segundo, escribe las expresiones para la frecuencia con la que Astra recibe dichas señales en los tramos de ida y vuelta de su viaje.
+\begin{center}
+  \TwinParadoxDiagram{0.6}{4.0}
+\end{center}
+\end{exercise}
+ 
+\end{document}
